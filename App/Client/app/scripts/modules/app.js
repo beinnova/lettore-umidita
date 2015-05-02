@@ -9,5 +9,6 @@
 angular.module("jsNightApp", [
     'btford.socket-io'
     ,'socket.directives'
+    , 'chart.directive'
     , 'gauge.directive'
 ])

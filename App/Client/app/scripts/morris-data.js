@@ -3,27 +3,27 @@ $(function() {
     Morris.Area({
         element: 'morris-area-chart',
         data: [{
-            period: '2010 Q1',
+            period: '2010',
             iphone: 2666,
             ipad: null,
             itouch: 2647
         }, {
-            period: '2010 Q2',
+            period: '2010',
             iphone: 2778,
             ipad: 2294,
             itouch: 2441
         }, {
-            period: '2010 Q3',
+            period: '2010 ',
             iphone: 4912,
             ipad: 1969,
             itouch: 2501
         }, {
-            period: '2010 Q4',
+            period: '2010 ',
             iphone: 3767,
             ipad: 3597,
             itouch: 5689
         }, {
-            period: '2011 Q1',
+            period: '2011 ',
             iphone: 6810,
             ipad: 1914,
             itouch: 2293
