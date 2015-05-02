@@ -54,7 +54,7 @@
                  //Accendo led umidità ok
  		digitalWrite(LED_HIGH, HIGH);
                 //Invio string 
-                Serial.println(JsonEncode("high", true));
+                Serial.println(JsonEncode("status", 1));
 
  	}else{
                 //Accendo led bassa umidità
@@ -62,7 +62,7 @@
                 //Spengo led alta umidità
  		digitalWrite(LED_HIGH, LOW);
                 //Invio segnale
-                Serial.println(JsonEncode("low", true));
+                Serial.println(JsonEncode("status", 0));
  	}
  
        //Delay lettura
@@ -80,7 +80,7 @@
 
  	String retJson = String();
  	retJson = retJson + "{\"" + key + "\":";
- 	retJson = retJson + "\""+ value +"\"}\n";
+ 	retJson = retJson + "\""+ value +"\"}";
 
  	return retJson;
 
