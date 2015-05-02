@@ -43,7 +43,7 @@ SerialRead.on("status::off", function(){
 
 io.on('connection', function (socket) {
 
-    socket.push(socket);
+    console.log("Connected");
 
 
 
