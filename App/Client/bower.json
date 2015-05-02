@@ -1,0 +1,19 @@
+{
+  "name": "lettore-umidita-client",
+  "version": "0.0.0",
+  "authors": [
+    "Giorgio@Dartfader <giorgio.cerruti@beinnova.it>"
+  ],
+  "description": "Progetto esempio per lettura umidità da mc Arduino. Client Web",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

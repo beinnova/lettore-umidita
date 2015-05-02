@@ -1,0 +1,15 @@
+{
+  "name": "lettore-umidita-client",
+  "version": "0.0.1",
+  "description": "Progetto esempio per lettura umidità da mc Arduino. Client Web",
+  "author": {
+    "name": "Giorgio Cerruti",
+    "email": "giorgio.cerruti@beinnova.it",
+    "url": "http://beinnova.it"
+  },
+  "dependencies": {
+    "grunt": "~0.4.5",
+    "grunt-cli": "~0.1.13",
+    "bower": "~1.4.1"
+  }
+}
