@@ -15,5 +15,5 @@ Applicativo client Angular JS
 Scketch Arduino
 
 ##Docker
-Qui beinnova/jsnight-demo](https://registry.hub.docker.com/u/beinnova/jsnight-demo/) trovate un'immagine Docker con lo stack necessario installato.
+Qui [beinnova/jsnight-demo](https://registry.hub.docker.com/u/beinnova/jsnight-demo/) trovate un'immagine Docker con lo stack necessario installato.
 
