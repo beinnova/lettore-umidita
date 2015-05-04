@@ -24,76 +24,17 @@ function GaugeDirective(){
 
         ,link: function(scope, elem, attr){
 
-            var _i = 0,
-                _data = new Array(),
-                _prev = 0,
-                db = new Array();
+            // Determine how many data points to keep based on the placeholder's initial size;
+            // this gives us a nice high-res plot while avoiding more than one point per pixel.
+            var container = elem;
+            var maximum = container.outerWidth() / 2 || 300;
 
-            _data.push({
-                data: [[0,100],[100,500]],
-                lines: {
-                    fill: true
-                }
-            })
+            //
 
-           //var chart =  Morris.Area({
-           //     element: attr.id,
-           //     data: [],
-           //     xkey: 'period',
-           //     ykeys: ['umidity'],
-           //     labels: ['Umidità'],
-           //     pointSize: 2,
-           //     hideHover: 'auto',
-           //     resize: true
-           // });
-
-
-
-                var plot = $.plot(elem, _data, {
-                    grid: {
-                        borderWidth: 1,
-                        minBorderMargin: 20,
-                        labelMargin: 10,
-                        backgroundColor: {
-                            colors: ["#fff", "#e4f4f4"]
-                        },
-                        margin: {
-                            top: 8,
-                            bottom: 20,
-                            left: 20
-                        }
-                        //markings: function(axes) {
-                        //    var markings = [];
-                        //    var xaxis = axes.xaxis;
-                        //    for (var x = Math.floor(xaxis.min); x < xaxis.max; x += xaxis.tickSize * 2) {
-                        //        markings.push({
-                        //            xaxis: {
-                        //                from: x,
-                        //                to: x + xaxis.tickSize
-                        //            },
-                        //            color: "rgba(232, 232, 255, 0.2)"
-                        //        });
-                        //    }
-                        //    return markings;
-                        //}
-                    },
-                    xaxis: {
-                        tickFormatter: function() {
-                            return "";
-                        }
-                    },
-                    yaxis: {
-                        min: 0,
-                        max: 1000
-                    },
-                    legend: {
-                        show: true
-                    }
-                });
+            var data = [];
 
             function getRandomData() {
-                var maximum = 700;
-                var data = [];
+
                 if (data.length) {
                     data = data.slice(1);
                 }
@@ -111,44 +52,72 @@ function GaugeDirective(){
                     res.push([i, data[i]])
                 }
 
-                console.log(res);
-                  return res;
-
+                return res;
             }
 
+            //
 
-            //setInterval(function updateRandom() {
-            //    _data[0].data = getRandomData();
-            //    plot.setData(_data);
-            //    plot.draw();
-            //}, 3000);
+            var series = [{
+                data: getRandomData(),
+                lines: {
+                    fill: true
+                }
+            }];
+
+            //
+
+            var plot = $.plot(container, series, {
+                grid: {
+                    borderWidth: 1,
+                    minBorderMargin: 20,
+                    labelMargin: 10,
+                    backgroundColor: {
+                        colors: ["#fff", "#e4f4f4"]
+                    },
+                    margin: {
+                        top: 8,
+                        bottom: 20,
+                        left: 20
+                    },
+                    markings: function(axes) {
+                        var markings = [];
+                        var xaxis = axes.xaxis;
+                        for (var x = Math.floor(xaxis.min); x < xaxis.max; x += xaxis.tickSize * 2) {
+                            markings.push({
+                                xaxis: {
+                                    from: x,
+                                    to: x + xaxis.tickSize
+                                },
+                                color: "rgba(232, 232, 255, 0.2)"
+                            });
+                        }
+                        return markings;
+                    }
+                },
+                xaxis: {
+                    tickFormatter: function() {
+                        return "";
+                    }
+                },
+                yaxis: {
+                    min: 0,
+                    max: 110
+                },
+                legend: {
+                    show: true
+                }
+            });
+
+            // Update the random dataset at 25FPS for a smoothly-animating chart
+
 
 
 
             scope.$watch("data", function(value){
 
-                if(value){
-                    ++_i;
-                    db.push([_prev, value]);
-                    _prev = value;
-                    //console.log(db);
-                    _data[0].data = db;
-                    plot.setData(_data);
-                    plot.draw();
-
-                }
-
-
-
-               // ++_i;
-               // var date = new Date().getHours() + ":" + new Date().getMinutes() + ":" + znew Date().getSeconds();
-               //
-               // console.log(date)
-               // _data.push({
-               //     period: date.toString() +'Q'+ _i.toString(),
-               //     umidity: value
-               // })
-               //chart.setData(_data )
+                series[0].data = getRandomData();
+                plot.setData(series);
+                plot.draw();
 
             })
         }
