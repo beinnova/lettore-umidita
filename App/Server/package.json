@@ -13,13 +13,9 @@
   },
   "dependencies": {
     "hapi": "~8.4.0",
-<<<<<<< HEAD
+
     "mqtt": "^1.1.3",
     "serialport": "~1.6.3",
     "socket.io": "~1.3.5"
-=======
-    "socket.io": "~1.3.5",
-    "mqtt": "~1.1.3"
->>>>>>> a02fe124002964cc9f6ee5d39ca9fc4b2a42c930
   }
 }
