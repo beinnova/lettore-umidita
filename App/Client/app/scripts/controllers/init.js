@@ -10,12 +10,28 @@ angular.module('jsNightApp')
 
 function InitCtrl( $scope, socket){
 
-    $scope.umidityValue = 0
+    $scope.umidityValue = 0;
     var self = this;
 
-    socket.on("sensor::umidity", function(data){
-       self.umidityValue = data.value;
 
+    socket.on("sensor::humidity", function(data){
+       self.humidityValue = data.value;
+
+    })
+
+    socket.on('led::on', function(data){
+        console.log("On");
+        self.led = {
+            status: true,
+            message: "ON"
+        };
+    })
+
+    socket.on('led::off', function(data){
+        self.led = {
+            status: false,
+            message: "OFF"
+        };
     })
 
 

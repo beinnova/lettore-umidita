@@ -352,3 +352,15 @@ table.dataTable thead .sorting:after {
 .panel-yellow a:hover {
     color: #df8a13;
 }
+
+.pomp-red{
+    color: #D32F2F;
+}
+
+.pomp-green {
+    color: #4CAF50;
+}
+
+h1.led-title {
+    font-size: 104px;
+}

@@ -14,7 +14,7 @@
 
  const int LED_LOW = 7;;
  const int LED_HIGH = 8;
- const int SENSOR_UMIDITY_A0 = A0;
+ const int SENSOR_HUMIDITY_A0 = A0;
  const int MIN_VALUE = 500;
  const int MAX_VALUE = 630;
  
@@ -29,7 +29,7 @@
  	Serial.begin(9600);
  	pinMode(LED_LOW, OUTPUT);
  	pinMode(LED_HIGH, OUTPUT);
- 	pinMode(SENSOR_UMIDITY_A0, INPUT);
+ 	pinMode(SENSOR_HUMIDITY_A0, INPUT);
 
  	//Settings
  	digitalWrite(LED_HIGH, LOW);
@@ -41,10 +41,10 @@
  void loop(){
 
  	//Leggo i dati dal sensore
- 	readed = analogRead(SENSOR_UMIDITY_A0);
+ 	readed = analogRead(SENSOR_HUMIDITY_A0);
  
         //Stampo su seriale la stringa
- 	Serial.println(JsonEncode("umidity", readed));
+ 	Serial.println(JsonEncode("humidity", readed));
 
  	//Check stato umidità
  	if(readed > MAX_VALUE){

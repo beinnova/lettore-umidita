@@ -18,7 +18,6 @@ function GaugeDirective(){
         , template:  '<div></div>'
         , scope: {
             value: "="
-            , title: "="
             , min: "="
             , max: "="
             , elemId: "=id"
@@ -28,11 +27,12 @@ function GaugeDirective(){
 
         ,link: function(scope, elem, attr){
 
-            var _title = scope.title
+            var _title = attr.title
                 , _min = scope.min
                 ,_max = scope.max
                 , elId = attr.id
                 , _value  = scope.value;
+
 
             var _gauge = new JustGage({
                 id: elId,
@@ -53,6 +53,7 @@ function GaugeDirective(){
 
                 if(value){
                     if(value > _max) value = _max;
+                    console.log(value);
                     _gauge.refresh(value);
                 }
 
