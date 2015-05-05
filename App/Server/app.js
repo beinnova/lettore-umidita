@@ -7,7 +7,8 @@
 
 var Hapi = require('hapi')
     , Socket = require('socket.io')
-    , SerialRead = require('./lib').SerialRead
+    //, SerialRead = require('./lib').SerialRead
+    , ReadAdapter = require('./../Worker/lib/adapter/mqtt')
     , sockets = new Array();
 
 
@@ -15,17 +16,17 @@ var Server = new Hapi.Server();
 Server.connection({port: 4000});
 
 var io = Socket(Server.listener);
-SerialRead.connect("/dev/ttyACM0");
-
-SerialRead.on("serial::close", function(){
+//SerialRead.connect("/dev/ttyACM0");
+ReadAdapter.connect();
+ReadAdapter.on("serial::close", function(){
     console.error("Seriale chiusa!");
 })
 
-SerialRead.on("serial::error", function(err){
+ReadAdapter.on("serial::error", function(err){
     console.error(err);
 })
 
-SerialRead.on("sensor::read", function(data){
+ReadAdapter.on("sensor::read", function(data){
 
 
    io.emit("sensor::"+data.type, {value: data.value});
@@ -33,11 +34,11 @@ SerialRead.on("sensor::read", function(data){
 })
 
 
-SerialRead.on("status::on", function(){
+ReadAdapter.on("status::on", function(){
     io.emit("led::green::on")
 })
 
-SerialRead.on("status::off", function(){
+ReadAdapter.on("status::off", function(){
     io.emit("led::red::on");
 })
 
@@ -51,11 +52,11 @@ io.on('connection', function (socket) {
 
 Server.start(function(){
     console.log("Server started");
-    SerialRead.read();
+    ReadAdapter.read();
 
 
-    SerialRead.on("serial::connected", function(){
-        console.log("In ascolto su seriale " + SerialRead.getPort());
+    ReadAdapter.on("serial::connected", function(){
+        console.log("In ascolto su seriale " + ReadAdapter.getPort());
     })
 });
 
