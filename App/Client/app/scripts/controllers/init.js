@@ -20,7 +20,7 @@ function InitCtrl( $scope, socket){
     })
 
     socket.on('led::on', function(data){
-        console.log("On");
+
         self.led = {
             status: true,
             message: "ON"

@@ -53,8 +53,7 @@ function GaugeDirective(){
 
                 if(value){
                     if(value > _max) value = _max;
-                    console.log(value);
-                    _gauge.refresh(value);
+                      _gauge.refresh(value);
                 }
 
             })
