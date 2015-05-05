@@ -22,15 +22,15 @@ function InitCtrl( $scope, socket){
     socket.on('led::on', function(data){
 
         self.led = {
-            status: true,
-            message: "ON"
+            status: false,
+            message: "OFF"
         };
     })
 
     socket.on('led::off', function(data){
         self.led = {
-            status: false,
-            message: "OFF"
+            status: true,
+            message: "ON"
         };
     })
 
