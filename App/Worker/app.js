@@ -9,13 +9,14 @@ var MQTT = require('mqtt')
 , SerialPort = require('serialport');
 
 
+
 var serialport = new SerialPort.SerialPort("/dev/ttyACM0",{
     baudrate: 9600
     , parser: SerialPort.parsers.readline("\n")
 
 });
 
-var MqttClient = MQTT.connect(null, {
+var MqttClient = MQTT.connect({
     protocolId: 'MQIsdp',
     protocolVersion: 3
 });
@@ -33,6 +34,7 @@ serialport.on('close', function(){
 serialport.on('data', function(data){
 
     var _data = JSON.parse(data);
+
 
     for(sensor in _data){
         var _topic = 'read/' + sensor;
